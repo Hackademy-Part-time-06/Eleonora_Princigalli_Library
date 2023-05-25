@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [Pagecontroller::class, 'index'])->name('index');
+Route::get('/', [Pagecontroller::class, 'index'])->name('books.index');
+Route::get('/send', [Pagecontroller::class, 'create'])->name('books.form');
+Route::post('/store', [Pagecontroller::class, 'store'])->name('books.store');
+Route::get('/libri/{book}/details', [Pagecontroller::class, 'show'])->name('books.show');
+
 
 
