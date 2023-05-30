@@ -1,7 +1,7 @@
 <x-main>
 <div class="container py-4 ">
 
-    <form action="{{ route('books.store') }}" method="POST">
+    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
         @method('post')
         @csrf
         <div class="mb-3">
@@ -23,6 +23,11 @@
         <div class="mb-3">
             <label class="form-label">Anno</label>
             <input class="form-control" name="year" type="numeric" placeholder="" value="{{ old('year') }}" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Immagine</label>
+            <input class="form-control" name="image" id="image" type="file" placeholder=""  />
         </div>
         
         
