@@ -15,19 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/', [Pagecontroller::class, 'index'])->name('books.index');
 Route::get('/send', [Pagecontroller::class, 'create'])->name('books.form');
 Route::post('/store', [Pagecontroller::class, 'store'])->name('books.store');
 Route::get('/libri/{book}/details', [Pagecontroller::class, 'show'])->name('books.show');
 
-Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/send', [CategoryController::class, 'create'])->name('categories.create');
+Route::get('/homecategory', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
 Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categoria/{category}/details', [CategoryController::class, 'show'])->name('categories.show');
+
+
 
 
 

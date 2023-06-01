@@ -51,4 +51,17 @@ class Pagecontroller extends Controller
 
 
         return view('books.show', ['book' => $book]);
-}}
+}
+
+
+    /**
+     * Instantiate a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('log')->only('index');
+        $this->middleware('subscribed')->except('store');
+    }
+
+}
