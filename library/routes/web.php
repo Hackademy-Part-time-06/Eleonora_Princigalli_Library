@@ -24,7 +24,7 @@ Route::get('/libri/{book}/details', [Pagecontroller::class, 'show'])->name('book
 
 Route::get('/homecategory', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
+Route::post('/salva', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categoria/{category}/details', [CategoryController::class, 'show'])->name('categories.show');
 
 
