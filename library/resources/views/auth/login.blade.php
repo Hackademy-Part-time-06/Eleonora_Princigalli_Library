@@ -20,6 +20,12 @@
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg p-2" type="submit">Invia</button>
             </div>
+
+            <div class="py-5"> Non sei registrato? 
+                <a href="{{route('register')}}" class="btn btn-outline-dark" type="button">clicca qui</a>
+
+            </div>
+
     
             @if ($errors->any())
                 <div class="alert alert-danger">
