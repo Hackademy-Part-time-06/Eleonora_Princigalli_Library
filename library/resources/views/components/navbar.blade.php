@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('books.index')}}">Home</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -17,10 +17,12 @@
                             aria-expanded="false">
                             Clicca qua
                         </a>
-                      
+
                         @auth
-                        Ciao, {{Auth::user()->email}}
-                           
+
+                            <ul class="dropdown-menu">
+
+                                Ciao, {{ Auth::user()->name }}
                                 <form id="form-logout" method="POST" action="{{ route('logout') }}">
                                     @csrf
 
@@ -30,18 +32,12 @@
                                     </li>
 
                                 </form>
-                            
-                      
                             @else
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
-                              <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                              <li>
-                                  <hr class="dropdown-divider">
-                              </li>
-
-                             
-                          </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                                </ul>
+                            </ul>
                         @endauth
                     </li>
 
