@@ -40,6 +40,46 @@ class CategoryController extends Controller
 
 
         return view('categories.show', ['category' => $category]);
-}}
+}
+
+public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
+
+    public function edit(Category $category)
+    {
+
+
+        return view('categories.edit', ['category' => $category]);
+    }
+
+
+    public function update(categoryRequest $request, Category $category)
+    {
+
+        
+        $category->update([
+
+            'name' => $request->name,
+            
+            
+        ]);
+        return redirect()->route('categories.index')->with('success', 'Modifica avvenuta con successo!');
+    }
+
+ public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Cancellazione avvenuta con successo!');
+    }
+
+
+
+
+
+}
 
 

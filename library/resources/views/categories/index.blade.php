@@ -27,15 +27,27 @@
                 <tr>
                     <th scope="row">{{$category['id']}}</th>
                     <td>{{$category['name']}}</td>
-               
+                    @auth
                     <td>
-                        <a href="{{route('categories.show', ['category' => $category['id']])}}">
-                            Visualizza
+                        <a href="{{ route('categories.edit', ['category' => $category['id']]) }}">
+                            Modifica
                         </a>
                     </td>
+                    <td>
+                        <form action="{{ route('categories.destroy', ['category' => $category['id']]) }}" method="POST"
+                            id="delete">
+                            @csrf
+                            @method('delete')
+                            <a href="#"
+                                onclick="event.preventDefault(); document.querySelector('#delete').submit();">Cancella</a>
+                        </form>
+                    </td>
+                @endauth
                 </tr>
                 @empty
-                <tr colspan="4"> </tr>
+                <tr colspan="4"> 
+                    
+                </tr>
                 @endforelse
             </tbody>
         </table>
