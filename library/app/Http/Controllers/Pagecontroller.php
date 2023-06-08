@@ -37,7 +37,7 @@ class Pagecontroller extends Controller
         Book::create([
 
             'title' => $request->title,
-            'author' => $request->author,
+            'author_id' => $request->author_id,
             'pages' => $request->pages,
             'year' => $request->year,
             'image' => $path_image,
@@ -88,7 +88,7 @@ class Pagecontroller extends Controller
         $book->update([
 
             'title' => $request->title,
-            'author' => $request->author,
+            'author_id' => $request->author_id,
             'pages' => $request->pages,
             'year' => $request->year,
             'image' => $path_image,

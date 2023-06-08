@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->string('image');
+        Schema::table('authors', function (Blueprint $table) {
+            $table->string('name');
+            $table->string('surname');
+            $table->datetime('birthday')->nullable();
         });
     }
 
@@ -21,8 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            //
+        Schema::table('authors', function (Blueprint $table) {
+            //$table->dropColumn(['name', 'surname', 'birthday']);
         });
     }
 };

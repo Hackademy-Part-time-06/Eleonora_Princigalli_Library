@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('image');
+
+            $table->integer('year');
+
+            $table->unsignedBigInteger('author_id'); 
+
+            $table->foreign('author_id') //Setto la chiave esterna presente nella tabella books
+                ->references('id') //Specifico la chiave primaria di authors
+                ->on('authors'); //Nome tabella di referenza
         });
     }
 
@@ -22,7 +29,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            //
+            $table->dropColumn('author_id');
+            $table->dropForeign('author_id');
         });
     }
 };

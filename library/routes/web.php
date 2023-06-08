@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Pagecontroller;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::put('/libri/{category}', [CategoryController::class, 'update'])->name('ca
 Route::delete('/libri/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
+//Route::resource('URI', 'Controller')
 
+Route::resource('authors', AuthorController::class);
 
 

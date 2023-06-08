@@ -17,7 +17,7 @@
     
             <div class="mb-3">
                 <label class="form-label">Autore</label>
-                <input class="form-control" name="author" type="numeric" placeholder="Inserisci autore" value="{{ $book -> author }}" />
+                <input class="form-control" name="author_id" type="numeric" placeholder="Inserisci autore" value="{{ $book -> author_id }}" />
             </div>
     
             <div class="mb-3">

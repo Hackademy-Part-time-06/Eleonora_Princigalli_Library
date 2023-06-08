@@ -26,7 +26,7 @@ class bookRequest extends FormRequest
          
                 "title" => "required|string",
                 "pages" => "required|numeric",
-                "author" => "required|string",
+                "author_id" => "required|string",
                 "year"=>"required|numeric",
                 "image"=>'mimes:png,jpg,jpeg'
             
@@ -39,8 +39,8 @@ class bookRequest extends FormRequest
             'title.required' => 'obbligatorio',
             'title.string' => 'stringa',
             'title.max' => '255 caratteri',
-            'author.required' => 'Autore deve essere obbligatorio',
-            'author.string' => 'stringa',
+            'author_id.required' => 'Autore deve essere obbligatorio',
+            'author_id.string' => 'stringa',
             'year.required' => 'richiesto',
 
             'image.mimes' => 'Inserisci immagine nei formati corretti'

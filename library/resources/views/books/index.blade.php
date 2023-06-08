@@ -30,7 +30,7 @@
                     <tr>
                         <th scope="row">{{ $book['id'] }}</th>
                         <td>{{ $book['title'] }}</td>
-                        <td>{{ $book['author'] }}</td>
+                        <td>{{ $book['author_id'] }}</td>
                         <td>{{ $book['pages'] }}</td>
                         <td>{{ $book['year'] }}</td>
                         <td>
