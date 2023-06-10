@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\categoryRequest;
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,9 @@ class CategoryController extends Controller
     }
     public function create(){
 
+        $books= Book::all();
 
-        return view('categories.create');
+        return view('categories.create', compact('books'));
 
     }
     public function store(categoryRequest $request)
@@ -29,6 +31,7 @@ class CategoryController extends Controller
         Category::create([
 
             'name' => $request->name,
+            'book_id' => $request->book_id,
             
         ]);
         return redirect()->route('categories.index')->with('success', 'Creazione avvenuta con successo!');

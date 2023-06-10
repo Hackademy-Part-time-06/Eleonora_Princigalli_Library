@@ -21,7 +21,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Autore</th>
-                    <th scope="col">Pagina</th>
+                    <th scope="col">Pagine</th>
                     <th scope="col">Anno</th>
                 </tr>
             </thead>
@@ -30,9 +30,10 @@
                     <tr>
                         <th scope="row">{{ $book['id'] }}</th>
                         <td>{{ $book['title'] }}</td>
-                        <td>{{ $book['author_id'] }}</td>
+                        <td>{{ $book->author->name }}</td>
                         <td>{{ $book['pages'] }}</td>
                         <td>{{ $book['year'] }}</td>
+         
                         <td>
                             <a href="{{ route('books.show', ['book' => $book['id']]) }}">
                                 Visualizza
@@ -59,6 +60,7 @@
                 @empty
                     <tr colspan="4"> </tr>
                 @endforelse
+
             </tbody>
         </table>
     </div>

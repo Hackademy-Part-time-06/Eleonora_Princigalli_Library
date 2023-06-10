@@ -8,12 +8,9 @@
                         alt="..."></div>
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{$book->title}}</h1>
-                    <p>Autore: {{$book->author_id}} </p>
+                    <p>Autore: {{$book->author->name}} </p> 
                     <p>Numero Pagine: {{$book->pages}} </p>
                     <p>Anno di uscita: {{$book->year}} </p>
-                  
-
-
                 </div>
             </div>
         </div>

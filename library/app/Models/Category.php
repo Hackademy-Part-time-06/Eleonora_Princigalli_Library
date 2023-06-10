@@ -9,5 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable= ['name'];
+    protected $fillable= ['name', 'book_id'];
+
+    public function book ()
+{
+    return $this->belongsTo(Book::class); //molte categorie appartengono ad un libro
+}
 }

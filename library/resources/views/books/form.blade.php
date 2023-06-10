@@ -17,7 +17,24 @@
 
         <div class="mb-3">
             <label class="form-label">Autore</label>
-            <input class="form-control" name="author_id" type="numeric" placeholder="Inserisci autore" value="{{ old('author_id') }}" />
+
+            <select name="author_id" id="author_id" class="form-control">
+                @foreach($authors as $author) 
+                <option value="{{ $author->id }}">{{ $author->name . ' ' . $author->surname }}</option>
+                @endforeach
+            </select>
+
+        
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Categoria</label>
+            <select name="book_id" id="book_id" class="form-control">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name  }}</option>
+                @endforeach
+            </select>
+            
         </div>
 
         <div class="mb-3">

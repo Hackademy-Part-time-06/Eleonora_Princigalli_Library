@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\bookRequest;
 use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Http\Request;
+use App\Http\Requests\bookRequest;
+use App\Models\Category;
 
 class Pagecontroller extends Controller
 {
@@ -12,14 +14,18 @@ class Pagecontroller extends Controller
     {
 
         $book = Book::all();
+       
+
 
         return view('books.index', ['books' => $book]);
     }
     public function create()
     {
+        $authors = Author::all();
+        $categories= Category::all();
+        
 
-
-        return view('books.form');
+        return view('books.form', compact('authors'),compact('categories')); //['authors'=> $authors]
     }
     public function store(bookRequest $request)
     {
@@ -66,9 +72,9 @@ class Pagecontroller extends Controller
 
     public function edit(Book $book)
     {
+        $authors = Author::all();
 
-
-        return view('books.edit', ['book' => $book]);
+        return view('books.edit', ['book' => $book], compact('authors'));
     }
 
 

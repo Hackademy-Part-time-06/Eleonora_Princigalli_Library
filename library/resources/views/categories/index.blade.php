@@ -19,14 +19,18 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
+                    <th scope="col">Nome categoria</th>
+                    <th scope="col">Libro</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 @forelse ($categories as $category)
                 <tr>
+
                     <th scope="row">{{$category['id']}}</th>
                     <td>{{$category['name']}}</td>
+                    <td>{{ $category->book->title }}</td>
                     @auth
                     <td>
                         <a href="{{ route('categories.edit', ['category' => $category['id']]) }}">

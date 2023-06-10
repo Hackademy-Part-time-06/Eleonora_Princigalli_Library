@@ -23,6 +23,7 @@ class categoryRequest extends FormRequest
     {
         return [
             "name" => "required|string",
+            "book_id"=> "required|string"
         ];
     }
     public function messages()
