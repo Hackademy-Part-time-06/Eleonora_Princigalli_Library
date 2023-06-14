@@ -26,9 +26,11 @@ class bookRequest extends FormRequest
          
                 "title" => "required|string",
                 "pages" => "required|numeric",
-                "author_id" => "required|string",
+                "author_id" => "required",
                 "year"=>"required|numeric",
-                "image"=>'mimes:png,jpg,jpeg'
+                "image"=>'mimes:png,jpg,jpeg',
+               
+
             
             
         ];

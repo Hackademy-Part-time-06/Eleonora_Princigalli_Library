@@ -12,7 +12,7 @@
         </div>
         @endif
         <div class="align-middle gap-2 d-flex justify-content-between">
-            <h3>Elenco categorie inseriti</h3>
+            <h3>Elenco categorie </h3>
             <a href="{{route('categories.create')}}" class="btn btn-primary " type="button">Crea una nuova categoria</a>
         </div>
         <table class="table border mt-2">

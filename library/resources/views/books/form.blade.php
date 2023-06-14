@@ -5,6 +5,7 @@
         @method('post')
         @csrf
         <div class="mb-3">
+
             <label class="form-label">Titolo</label>
             <input class="form-control" name="title" type="text" placeholder="inserisci titolo" value="{{ old('title') }}" />
         </div>
@@ -23,19 +24,10 @@
                 <option value="{{ $author->id }}">{{ $author->name . ' ' . $author->surname }}</option>
                 @endforeach
             </select>
-
         
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Categoria</label>
-            <select name="book_id" id="book_id" class="form-control">
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name  }}</option>
-                @endforeach
-            </select>
-            
-        </div>
+       
 
         <div class="mb-3">
             <label class="form-label">Anno</label>
@@ -47,7 +39,7 @@
             <input class="form-control" name="image" id="image" type="file" placeholder=""  />
         </div>
         
-        
+       
 
 
         <div class="d-grid">

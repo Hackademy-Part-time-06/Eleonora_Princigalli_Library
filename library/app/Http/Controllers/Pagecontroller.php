@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\bookRequest;
-use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class Pagecontroller extends Controller
 {
@@ -14,10 +15,11 @@ class Pagecontroller extends Controller
     {
 
         $book = Book::all();
+        $categories= Category::all();
        
 
 
-        return view('books.index', ['books' => $book]);
+        return view('books.index', ['books' => $book],compact('categories'));
     }
     public function create()
     {
@@ -47,6 +49,7 @@ class Pagecontroller extends Controller
             'pages' => $request->pages,
             'year' => $request->year,
             'image' => $path_image,
+            'user_id' => Auth::user()->id
         ]);
         return redirect()->route('books.index')->with('success', 'Creazione avvenuta con successo!');
     }

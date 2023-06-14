@@ -12,7 +12,7 @@
             </div>
         @endif
         <div class="align-middle gap-2 d-flex justify-content-between">
-            <h3>Elenco Libri inseriti</h3>
+            <h3>Elenco Libri inseriti da {{Auth::user()->name}} </h3>
             <a href="{{ route('books.form') }}" class="btn btn-primary " type="button">Crea Nuovo Libro</a>
         </div>
         <table class="table border mt-2">
@@ -23,6 +23,8 @@
                     <th scope="col">Autore</th>
                     <th scope="col">Pagine</th>
                     <th scope="col">Anno</th>
+                    
+                    
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +34,8 @@
                         <td>{{ $book['title'] }}</td>
                         <td>{{ $book->author->name }}</td>
                         <td>{{ $book['pages'] }}</td>
-                        <td>{{ $book['year'] }}</td>
-         
+                        <td>{{ $book['year'] }}</td>  
+                           
                         <td>
                             <a href="{{ route('books.show', ['book' => $book['id']]) }}">
                                 Visualizza
@@ -60,7 +62,6 @@
                 @empty
                     <tr colspan="4"> </tr>
                 @endforelse
-
             </tbody>
         </table>
     </div>

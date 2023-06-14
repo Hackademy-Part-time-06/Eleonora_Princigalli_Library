@@ -11,7 +11,7 @@
                 <input class="form-control" name="name" type="text" placeholder="inserisci nome" value="{{ old('title') }}" />
 
 
-                <label class="form-label">Elenco libri </label>
+                <label class="form-label">elenco di Libri</label>
                 <select name="book_id" id="book_id" class="form-control">
                     @foreach ($books as $book)
                         <option value="{{ $book->id }}">{{ $book->title  }}</option>
