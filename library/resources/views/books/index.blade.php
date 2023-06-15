@@ -12,7 +12,13 @@
             </div>
         @endif
         <div class="align-middle gap-2 d-flex justify-content-between">
-            <h3>Elenco Libri inseriti da {{Auth::user()->name}} </h3>
+            @if (Auth::user())
+                <h3>Ciao {{ Auth::user()->name }}, questi sono i nostri libri</h3>
+            @else
+                <h3>Elenco Libri inseriti </h3>
+            @endif
+
+
             <a href="{{ route('books.form') }}" class="btn btn-primary " type="button">Crea Nuovo Libro</a>
         </div>
         <table class="table border mt-2">
@@ -23,8 +29,9 @@
                     <th scope="col">Autore</th>
                     <th scope="col">Pagine</th>
                     <th scope="col">Anno</th>
-                    
-                    
+                    <th scope="col">Categorie</th>
+
+
                 </tr>
             </thead>
             <tbody>
@@ -34,30 +41,37 @@
                         <td>{{ $book['title'] }}</td>
                         <td>{{ $book->author->name }}</td>
                         <td>{{ $book['pages'] }}</td>
-                        <td>{{ $book['year'] }}</td>  
-                           
+                        <td>{{ $book['year'] }}</td>
+
+                        <td>
+                            @foreach ($book->categories as $category)
+                                <li>{{ $category->name }} </li>
+                            @endforeach
+
                         <td>
                             <a href="{{ route('books.show', ['book' => $book['id']]) }}">
                                 Visualizza
                             </a>
                         </td>
                         @auth
-                            <td>
-                                <a href="{{ route('books.edit', ['book' => $book['id']]) }}">
-                                    Modifica
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{ route('books.destroy', ['book' => $book['id']]) }}" method="POST"
-                                    id="delete-{{$book['id']}}">
-                                    @csrf
-                                    @method('delete')
-                                    <a href="#"
-                                        onclick="event.preventDefault(); document.querySelector('#delete-{{$book['id']}}').submit();">Cancella</a>
-                                </form>
-                            </td>
-                        @endauth
+                            @if ($book['user_id'] == Auth::user()->id)
+                                <td>
+                                    <a href="{{ route('books.edit', ['book' => $book['id']]) }}">
+                                        Modifica
+                                    </a>
+                                </td>
 
+                                <td>
+                                    <form action="{{ route('books.destroy', ['book' => $book['id']]) }}" method="POST"
+                                        id="delete-{{ $book['id'] }}">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="#"
+                                            onclick="event.preventDefault(); document.querySelector('#delete-{{ $book['id'] }}').submit();">Cancella</a>
+                                    </form>
+                                </td>
+                            @endif
+                        @endauth
                     </tr>
                 @empty
                     <tr colspan="4"> </tr>

@@ -18,9 +18,9 @@ class Book extends Model
 }
 
 
-public function category ()
+public function categories ()
 {
-    return $this->hasMany(Category::class); //Questo model Book ha molte categorie, un libro ha molte categorie
+    return $this->belongsToMany(Category::class); //Questo model Book ha molte categorie, un libro ha molte categorie
 }
 
 public function user ()

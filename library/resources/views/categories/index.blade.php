@@ -30,7 +30,7 @@
 
                     <th scope="row">{{$category['id']}}</th>
                     <td>{{$category['name']}}</td>
-                    <td>{{ $category->book->title }}</td>
+                   
                     @auth
                     <td>
                         <a href="{{ route('categories.edit', ['category' => $category['id']]) }}">

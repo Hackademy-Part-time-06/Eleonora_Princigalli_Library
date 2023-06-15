@@ -13,13 +13,17 @@ class Pagecontroller extends Controller
 {
     public function index()
     {
+     
+       /*  if (Auth::user()) {
+            //Filtra i libri
+            $books = Book::where('user_id', Auth::user()->id)->get();
+        } else {
+            $books = Book::all();
+        } */
+            $books = Book::all();
 
-        $book = Book::all();
-        $categories= Category::all();
-       
-
-
-        return view('books.index', ['books' => $book],compact('categories'));
+    
+        return view('books.index', ['books' => $books]);
     }
     public function create()
     {
@@ -42,7 +46,7 @@ class Pagecontroller extends Controller
             $path_image = $request->file('image')->storeAs('public/images', $path_name);
         }
 
-        Book::create([
+       $data= Book::create([
 
             'title' => $request->title,
             'author_id' => $request->author_id,
@@ -51,6 +55,7 @@ class Pagecontroller extends Controller
             'image' => $path_image,
             'user_id' => Auth::user()->id
         ]);
+        $data->categories()->attach($request->categories); // Scrive nella tabella pivot di BOOK con CATEGORY
         return redirect()->route('books.index')->with('success', 'Creazione avvenuta con successo!');
     }
 
@@ -74,10 +79,15 @@ class Pagecontroller extends Controller
 
 
     public function edit(Book $book)
-    {
-        $authors = Author::all();
 
-        return view('books.edit', ['book' => $book], compact('authors'));
+    {
+        if (!(Auth::user()->id == $book->user_id)) {
+            abort(401);
+        }
+        $authors = Author::all();
+        $categories = Category::all();
+
+        return view('books.edit', ['book' => $book], compact('authors','categories'));
     }
 
 

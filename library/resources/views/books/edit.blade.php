@@ -29,10 +29,29 @@
             </div>
     
             <div class="mb-3">
-                <label class="form-label">Anno</label>
+                <label class="form-label">Anno</labelif@if ()
+                    
+                @endif>
                 <input class="form-control" name="year" type="numeric" placeholder="" value="{{ $book -> year}}" />
             </div>
-    
+
+            <div class="mb-3">
+                <label class="form-label">Categoria</label>
+
+            @foreach ($categories as $category)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="categories[]"
+                    value="{{$category->id}}" id="categories_id">
+                  @if ()
+                      
+                  @endif
+                    
+                <label class="form-check-label" for="categories_id">
+                    {{$category->name}}
+                </label>
+            </div>
+            @endforeach
+            </div>
             <div class="mb-3">
                 <label class="form-label">Immagine</label>
                 <input class="form-control" name="image" id="image" type="file" placeholder=""  />

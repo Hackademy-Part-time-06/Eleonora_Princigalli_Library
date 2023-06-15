@@ -31,7 +31,7 @@ class CategoryController extends Controller
         Category::create([
 
             'name' => $request->name,
-            'book_id' => $request->book_id,
+        
             
         ]);
         return redirect()->route('categories.index')->with('success', 'Creazione avvenuta con successo!');

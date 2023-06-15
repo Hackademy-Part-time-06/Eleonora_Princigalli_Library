@@ -11,8 +11,8 @@ class Category extends Model
 
     protected $fillable= ['name', 'book_id'];
 
-    public function book ()
+    public function books ()
 {
-    return $this->belongsTo(Book::class); //molte categorie appartengono ad un libro
+    return $this->belongsToMany(Book::class); 
 }
 }
