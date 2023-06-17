@@ -11,6 +11,21 @@
                     <p>Autore: {{$book->author->name}} </p> 
                     <p>Numero Pagine: {{$book->pages}} </p>
                     <p>Anno di uscita: {{$book->year}} </p>
+                    <p>Categorie:
+                        @foreach ($book->categories as $category ) 
+                        @if($loop->last)
+                        {{$category->name}}
+                        @else
+                        {{$category->name . ', '}}
+                        @endif
+                      {{-- l'if ce l'ho messo solo per la virgola  --}}
+                            
+                        @endforeach
+                    
+                    
+                    
+                    </p>
+
                 </div>
             </div>
         </div>

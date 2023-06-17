@@ -13,25 +13,25 @@ class Pagecontroller extends Controller
 {
     public function index()
     {
-     
-       /*  if (Auth::user()) {
+
+        /*  if (Auth::user()) {
             //Filtra i libri
             $books = Book::where('user_id', Auth::user()->id)->get();
         } else {
             $books = Book::all();
         } */
-            $books = Book::all();
+        $books = Book::all();
 
-    
+
         return view('books.index', ['books' => $books]);
     }
     public function create()
     {
         $authors = Author::all();
-        $categories= Category::all();
-        
+        $categories = Category::all();
 
-        return view('books.form', compact('authors'),compact('categories')); //['authors'=> $authors]
+
+        return view('books.form', compact('authors'), compact('categories')); //['authors'=> $authors]
     }
     public function store(bookRequest $request)
     {
@@ -46,7 +46,7 @@ class Pagecontroller extends Controller
             $path_image = $request->file('image')->storeAs('public/images', $path_name);
         }
 
-       $data= Book::create([
+        $data = Book::create([
 
             'title' => $request->title,
             'author_id' => $request->author_id,
@@ -64,6 +64,7 @@ class Pagecontroller extends Controller
     public function show(Book $book)
     {
 
+//$categories= Category::all();
 
         return view('books.show', ['book' => $book]);
     }
@@ -87,14 +88,14 @@ class Pagecontroller extends Controller
         $authors = Author::all();
         $categories = Category::all();
 
-        return view('books.edit', ['book' => $book], compact('authors','categories'));
+        return view('books.edit', ['book' => $book], compact('authors', 'categories'));
     }
 
 
     public function update(bookRequest $request, Book $book)
     {
 
-        $path_image = $book -> image;
+        $path_image = $book->image;
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
@@ -112,18 +113,18 @@ class Pagecontroller extends Controller
             'year' => $request->year,
             'image' => $path_image,
         ]);
+
+        $book->categories()->sync($request->categories);
+
         return redirect()->route('books.index')->with('success', 'Modifica avvenuta con successo!');
     }
 
- public function destroy(Book $book)
+    public function destroy(Book $book)
     {
-       
 
+$book->categories()->detach();
         $book->delete();
 
         return redirect()->route('books.index')->with('success', 'Cancellazione avvenuta con successo!');
     }
-
-
-
 }
